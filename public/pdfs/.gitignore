@@ -1,5 +1,0 @@
-# Ignorar todos los archivos PDF generados
-*.pdf
-
-# Mantener la carpeta pero no su contenido
-!.gitignore 
