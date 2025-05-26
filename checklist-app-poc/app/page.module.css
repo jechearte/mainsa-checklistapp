@@ -1,0 +1,108 @@
+/* app/page.module.css */
+.main {
+  max-width: 900px; /* Ancho máximo, bueno para tablets */
+  margin: 20px auto; /* Centrado con margen superior/inferior */
+  padding: 20px;
+  font-family: sans-serif;
+  /* background-color: #f4f4f4; */ /* Eliminamos el fondo gris claro */
+  border-radius: 8px;
+}
+
+.title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+}
+
+.saveButton {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin-top: 30px;
+  background-color: #001845; /* Azul oscuro */
+  color: white;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s ease; /* Cambiar transición */
+}
+
+.saveButton:hover {
+  /* background-color: #303f9f; */ /* Quitar o cambiar hover si se prefiere */
+  opacity: 0.9; /* Ligera opacidad al pasar */
+}
+
+/* --- Estilos Resumen y Observaciones --- */
+.summarySection {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #fff3e0; /* Fondo naranja muy claro para destacar */
+    border: 1px solid #ffe0b2;
+    border-radius: 8px;
+}
+
+.summaryTitle {
+    font-size: 1.3rem;
+    color: #e65100; /* Naranja oscuro */
+    margin-bottom: 20px; /* Más margen inferior */
+}
+
+.summaryList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.summaryItem {
+    padding: 15px 0; /* Más padding vertical */
+    border-bottom: 1px dashed #ffe0b2;
+    /* No necesitamos font-size aquí, se controla en los hijos */
+}
+.summaryItem:last-child {
+    border-bottom: none;
+    padding-bottom: 5px; /* Menos padding al final */
+}
+
+/* Contenedor para ID y nombre del item NOK */
+.nokItemDetails {
+    font-size: 0.95rem;
+    margin-bottom: 8px; /* Espacio antes del textarea */
+    line-height: 1.4;
+}
+
+/* Estilos para el textarea individual */
+.nokObservationTextarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #fdcfa8; /* Borde naranja más suave */
+    border-radius: 5px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    box-sizing: border-box; 
+    resize: vertical; /* Permitir redimensionar verticalmente */
+    min-height: 50px; /* Altura mínima */
+}
+
+/* Quitar estilos de observaciones generales anteriores */
+/* 
+.observations {
+    margin-top: 20px;
+}
+.observationsLabel {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #444;
+}
+.observationsTextarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    line-height: 1.5;
+    box-sizing: border-box; 
+}
+*/ 

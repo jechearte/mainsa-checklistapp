@@ -1,0 +1,112 @@
+/* components/ChecklistGroup.module.css */
+.groupContainer {
+  margin-bottom: 15px; /* Reducir margen inferior entre grupos */
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Sombra más sutil */
+  overflow: hidden; /* Para que el borde redondeado funcione bien */
+}
+
+.groupHeader {
+  display: flex;
+  justify-content: space-between; /* Poner título a la izq, flecha a la der */
+  align-items: center;
+  padding: 12px 15px; /* Padding para la cabecera */
+  cursor: pointer; /* Por defecto, asumimos que es clickeable */
+  border-bottom: 1px solid #eee; /* Separador ligero */
+  background-color: #f8f9fa; /* Fondo ligero para cabecera */
+  transition: background-color 0.2s ease;
+}
+
+/* Estilos específicos para cabecera no colapsable */
+.groupHeader.headerNotCollapsible {
+  cursor: default; /* Cambiar cursor si no es clickeable */
+}
+.groupHeader.headerNotCollapsible:hover {
+  background-color: #f8f9fa; /* Evitar cambio de fondo al pasar ratón */
+}
+
+.groupHeader:hover {
+  background-color: #f1f3f5;
+}
+
+/* Nuevo contenedor para título y estado */
+.titleStatusWrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre título e indicador */
+    flex-grow: 1;
+    overflow: hidden; /* Evitar que el título largo empuje el indicador */
+}
+
+.groupTitle {
+  font-size: 1.05rem; /* Ajustar tamaño */
+  color: #333;
+  margin: 0; /* Quitar margen por defecto del h3 */
+  /* flex-grow: 1; quitado, se maneja en wrapper */
+  white-space: nowrap; /* Evitar salto de línea en título */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Añadir puntos si es muy largo */
+}
+
+/* Estilos para el círculo indicador de estado */
+.statusIndicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0; /* Evitar que se encoja */
+    border: 1px solid rgba(0,0,0,0.1); /* Borde sutil */
+}
+
+/* Clases de color para el indicador */
+.statusIndicator.green {
+    background-color: #28a745; /* Verde */
+}
+.statusIndicator.red {
+    background-color: #dc3545; /* Rojo */
+}
+.statusIndicator.orange {
+    background-color: #fd7e14; /* Naranja */
+}
+.statusIndicator.gray {
+    background-color: #adb5bd; /* Gris */
+}
+
+.arrowIcon {
+  width: 10px;
+  height: 10px;
+  border-style: solid;
+  border-width: 0 2px 2px 0; /* Grosor del borde de la flecha */
+  display: inline-block;
+  padding: 3px;
+  margin-left: 10px; /* Espacio a la izquierda de la flecha */
+  transform-origin: center;
+  transition: transform 0.2s ease;
+  flex-shrink: 0; /* Evitar que la flecha se encoja */
+}
+
+.arrowRight {
+  transform: rotate(-45deg);
+  border-color: #6c757d; /* Color flecha cerrada */
+}
+
+.arrowDown {
+  transform: rotate(45deg);
+  border-color: #0d6efd; /* Color flecha abierta */
+}
+
+/* Contenedor para los items cuando están visibles */
+.itemsContainer {
+    padding: 0px 5px 10px 5px; /* Padding ligero alrededor de los items */
+    /* Animación opcional al abrir/cerrar */
+    /* max-height: 1000px; */
+    /* transition: max-height 0.3s ease-in-out; */ 
+}
+
+/* Estilo cuando está cerrado (para animación) */
+/* .groupContainer:not(:global(.open)) .itemsContainer { */
+/*     max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+} */ 
