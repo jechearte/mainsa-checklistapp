@@ -1,0 +1,66 @@
+import { getServerSession } from 'next-auth';
+import { NextResponse } from 'next/server';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+
+export async function GET(
+  request: Request,
+  { params }: { params: { tipo_maquina_id: string } }
+) {
+  try {
+    // Verificar la sesión del usuario
+    const session = await getServerSession(authOptions);
+    
+    console.log('Sesión actual:', {
+      user: session?.user,
+      hasAccessToken: !!session?.accessToken,
+    });
+    
+    // Verificar que tenemos un token de acceso
+    if (!session?.accessToken) {
+      console.error('No hay token de acceso en la sesión:', session);
+      return NextResponse.json({ error: 'No autorizado - Token no encontrado' }, { status: 401 });
+    }
+
+    const tipoMaquinaId = params.tipo_maquina_id;
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+    const checklistUrl = `${apiUrl}/api/checklists/by-machine-type/${tipoMaquinaId}/`;
+    
+    console.log('Haciendo petición a:', checklistUrl);
+    
+    // Hacer la petición al backend con el token
+    const response = await fetch(checklistUrl, {
+      headers: {
+        'Authorization': `Bearer ${session.accessToken}`,
+        'Accept': 'application/json',
+      },
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => null);
+      console.error('Error en la respuesta del backend:', {
+        status: response.status,
+        statusText: response.statusText,
+        url: checklistUrl,
+        errorData
+      });
+      throw new Error(`Error al obtener el checklist: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('Respuesta exitosa de checklist:', {
+      id: data.id,
+      nombre: data.nombre,
+      url: checklistUrl
+    });
+    
+    return NextResponse.json(data);
+    
+  } catch (error) {
+    console.error('Error en GET /api/checklists/by-machine-type:', error);
+    return NextResponse.json(
+      { error: 'Error al obtener el checklist' },
+      { status: 500 }
+    );
+  }
+} 
